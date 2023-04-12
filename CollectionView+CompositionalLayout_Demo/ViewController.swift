@@ -8,18 +8,20 @@
 import UIKit
 import SnapKit
 
-enum Section: CaseIterable {
-    case main
+enum Section: Int, CaseIterable {
+    case grid3
+    case grid6
 }
 
 class ViewController: UIViewController {
-    
+  
     // MARK: - Properties
     
     private lazy var collectionView: UICollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout())
         view.showsHorizontalScrollIndicator = false
         view.register(CustomCell.self, forCellWithReuseIdentifier: CustomCell.Identifier)
+        view.register(CustomHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CustomHeaderView.Identifier)
         return view
     }()
     
@@ -51,56 +53,103 @@ class ViewController: UIViewController {
             return cell
         }
         
+        // 👉 dataSource에서 Header, Footere들을 만들어 줍니다.
+        dataSource.supplementaryViewProvider = { (collectionView, kind, indexPath) in
+            guard kind == UICollectionView.elementKindSectionHeader else { return nil }
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CustomHeaderView.Identifier, for: indexPath) as? CustomHeaderView
+            
+            header?.setupTitle(text: "Section \(indexPath.section)")
+            return header
+        }
+        
+        
+        
         // dataSource를 구성하기 위해 Snapshot으로 섹션 및 아이템의 정보를 업데이트
         var snapShot = NSDiffableDataSourceSnapshot<Section, Int>()
-        snapShot.appendSections([Section.main])
-        snapShot.appendItems(Array(1...24))
+        Section.allCases.forEach {
+            snapShot.appendSections([$0])
+            switch $0 {
+            case .grid3:
+                snapShot.appendItems(Array(1...12))
+            case .grid6:
+                snapShot.appendItems(Array(13...24))
+            }
+        }
         dataSource.apply(snapShot, animatingDifferences: true)
     }
     
     private func createLayout() -> UICollectionViewLayout {
         
-        let numberOfRows = 1.0 / 4.0       // 행의 갯수
-        let numberOfColumns = 1.0 / 6.0    // 열의 갯수
-        let itemInset: CGFloat = 5.0
-        
         // CompositionalLayout(sectionProvider:)
-        let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment in
+        let layout = UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) in
             
-            // item
-            let itmeSize = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(numberOfRows),
-                heightDimension: .fractionalHeight(1)
-            )
-            let item = NSCollectionLayoutItem(layoutSize: itmeSize)
-            item.contentInsets = NSDirectionalEdgeInsets(top: itemInset, leading: itemInset, bottom: itemInset, trailing: itemInset)
-            
-            // group
-            let groupSize = NSCollectionLayoutSize(
+            // 👉 Header
+            let headerSize = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1),
-                heightDimension: .fractionalHeight(numberOfColumns)
+                heightDimension: .absolute(60)
             )
-            // 정렬할 방향으로 그룹을 만들 수 있습니다. (horizontal, vertical)
-            // nested 모양을 만들 때 horizontal, vertical를 조합해 subitems에 추가해서 사용하면 됩니다.
-            let group = NSCollectionLayoutGroup.horizontal(
-                layoutSize: groupSize,
-                subitems: [item]
+            let header =  NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: headerSize,
+                elementKind: UICollectionView.elementKindSectionHeader,
+                alignment: .top
             )
-            // 이렇게 직접 행의 갯수로 지정도 가능하지만 복잡합니다. (다만 값에 따라 셀이 화면에서 벗어날 수 있습니다.)
-            // 이건 아마도 한 행 또는 한 열로 구성된 콜렉션뷰를 구현할 때 편하게 사용될 것 같습니다.
-            // let group = NSCollectionLayoutGroup.horizontal(
-            //     layoutSize: groupSize,
-            //     repeatingSubitem: item,
-            //     count: colunm
-            // )
             
-            // section
-            let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20)
-            
-            return section
+            // section에 따라 레이아웃 그리기 (첫 번째 section)
+            guard let section = Section(rawValue: sectionIndex) else { return nil }
+            if section == .grid3 {
+                // item
+                let itmeSize = NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1/3),
+                    heightDimension: .fractionalHeight(1)
+                )
+                let item = NSCollectionLayoutItem(layoutSize: itmeSize)
+                item.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+                
+                // group
+                let groupSize = NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1),
+                    heightDimension: .fractionalHeight(1/7)
+                )
+                let group = NSCollectionLayoutGroup.horizontal(
+                    layoutSize: groupSize,
+                    subitems: [item]
+                )
+                
+                // section
+                let section = NSCollectionLayoutSection(group: group)
+                section.boundarySupplementaryItems = [header]
+                
+                return section
+                
+            // 두 번째 section
+            } else {
+                
+                // item
+                let itmeSize = NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1/6),
+                    heightDimension: .fractionalHeight(1)
+                )
+                let item = NSCollectionLayoutItem(layoutSize: itmeSize)
+                item.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+                
+                // group
+                let groupSize = NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1),
+                    heightDimension: .fractionalHeight(1/5)
+                )
+                let group = NSCollectionLayoutGroup.horizontal(
+                    layoutSize: groupSize,
+                    subitems: [item]
+                )
+                
+                // section
+                let section = NSCollectionLayoutSection(group: group)
+                section.boundarySupplementaryItems = [header]
+                
+                return section
+            }
         }
-        
+    
         return layout
     }
     
@@ -143,3 +192,5 @@ struct PreView: PreviewProvider {
     }
 }
 #endif
+
+

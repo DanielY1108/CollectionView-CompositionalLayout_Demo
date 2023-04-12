@@ -15,6 +15,7 @@
 		650A5F2229E581C2001CDD4B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 650A5F2029E581C2001CDD4B /* LaunchScreen.storyboard */; };
 		650A5F2B29E592FA001CDD4B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 650A5F2A29E592FA001CDD4B /* SnapKit */; };
 		650A5F2D29E59F81001CDD4B /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650A5F2C29E59F81001CDD4B /* CustomCell.swift */; };
+		653079CC29E6FCDA00EA26F4 /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653079CB29E6FCDA00EA26F4 /* CustomHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		650A5F2129E581C2001CDD4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		650A5F2329E581C2001CDD4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		650A5F2C29E59F81001CDD4B /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		653079CB29E6FCDA00EA26F4 /* CustomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				650A5F1729E581C1001CDD4B /* SceneDelegate.swift */,
 				650A5F1929E581C1001CDD4B /* ViewController.swift */,
 				650A5F2C29E59F81001CDD4B /* CustomCell.swift */,
+				653079CB29E6FCDA00EA26F4 /* CustomHeaderView.swift */,
 				650A5F1B29E581C1001CDD4B /* Main.storyboard */,
 				650A5F1E29E581C2001CDD4B /* Assets.xcassets */,
 				650A5F2029E581C2001CDD4B /* LaunchScreen.storyboard */,
@@ -149,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				653079CC29E6FCDA00EA26F4 /* CustomHeaderView.swift in Sources */,
 				650A5F1A29E581C1001CDD4B /* ViewController.swift in Sources */,
 				650A5F1629E581C1001CDD4B /* AppDelegate.swift in Sources */,
 				650A5F2D29E59F81001CDD4B /* CustomCell.swift in Sources */,
@@ -307,6 +311,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -335,6 +340,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
