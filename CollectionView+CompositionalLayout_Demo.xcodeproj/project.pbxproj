@@ -13,6 +13,8 @@
 		650A5F1D29E581C1001CDD4B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 650A5F1B29E581C1001CDD4B /* Main.storyboard */; };
 		650A5F1F29E581C2001CDD4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 650A5F1E29E581C2001CDD4B /* Assets.xcassets */; };
 		650A5F2229E581C2001CDD4B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 650A5F2029E581C2001CDD4B /* LaunchScreen.storyboard */; };
+		650A5F2B29E592FA001CDD4B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 650A5F2A29E592FA001CDD4B /* SnapKit */; };
+		650A5F2D29E59F81001CDD4B /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650A5F2C29E59F81001CDD4B /* CustomCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,7 @@
 		650A5F1E29E581C2001CDD4B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		650A5F2129E581C2001CDD4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		650A5F2329E581C2001CDD4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		650A5F2C29E59F81001CDD4B /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				650A5F2B29E592FA001CDD4B /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +63,7 @@
 				650A5F1529E581C1001CDD4B /* AppDelegate.swift */,
 				650A5F1729E581C1001CDD4B /* SceneDelegate.swift */,
 				650A5F1929E581C1001CDD4B /* ViewController.swift */,
+				650A5F2C29E59F81001CDD4B /* CustomCell.swift */,
 				650A5F1B29E581C1001CDD4B /* Main.storyboard */,
 				650A5F1E29E581C2001CDD4B /* Assets.xcassets */,
 				650A5F2029E581C2001CDD4B /* LaunchScreen.storyboard */,
@@ -83,6 +88,9 @@
 			dependencies = (
 			);
 			name = "CollectionView+CompositionalLayout_Demo";
+			packageProductDependencies = (
+				650A5F2A29E592FA001CDD4B /* SnapKit */,
+			);
 			productName = "CollectionView+CompositionalLayout_Demo";
 			productReference = 650A5F1229E581C1001CDD4B /* CollectionView+CompositionalLayout_Demo.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +119,9 @@
 				Base,
 			);
 			mainGroup = 650A5F0929E581C1001CDD4B;
+			packageReferences = (
+				650A5F2929E592FA001CDD4B /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 650A5F1329E581C1001CDD4B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -140,6 +151,7 @@
 			files = (
 				650A5F1A29E581C1001CDD4B /* ViewController.swift in Sources */,
 				650A5F1629E581C1001CDD4B /* AppDelegate.swift in Sources */,
+				650A5F2D29E59F81001CDD4B /* CustomCell.swift in Sources */,
 				650A5F1829E581C1001CDD4B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -358,6 +370,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		650A5F2929E592FA001CDD4B /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		650A5F2A29E592FA001CDD4B /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 650A5F2929E592FA001CDD4B /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 650A5F0A29E581C1001CDD4B /* Project object */;
 }
