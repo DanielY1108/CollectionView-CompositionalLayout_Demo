@@ -8,9 +8,8 @@
 import UIKit
 import SnapKit
 
-enum Section: Int, CaseIterable {
-    case grid4
-    case grid6
+enum Section: CaseIterable {
+    case main
 }
 
 class ViewController: UIViewController {
@@ -24,18 +23,18 @@ class ViewController: UIViewController {
         return view
     }()
     
-    // dataSource 채택 대신 DiffableDataSource로 직접 만들어 줬습니다.
-    var dataSource: UICollectionViewDiffableDataSource<Section, Int>!
-    let data = Array(1...20)
-
+    // dataSource 대신 DiffableDataSource로 직접 만들어 줬습니다.
+    private var dataSource: UICollectionViewDiffableDataSource<Section, Int>!
+    
     // MARK: - Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
+        
         configureDataSource()
     }
     
@@ -43,24 +42,26 @@ class ViewController: UIViewController {
     
     private func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Int>(collectionView: collectionView) { (collectionView, indexPath, itemIdentifier) -> UICollectionViewCell in
-           
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCell.Identifier, for: indexPath) as? CustomCell else { preconditionFailure() }
+            
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCell.Identifier, for: indexPath) as? CustomCell else {
+                fatalError("Faild to load CustomCell")
+            }
             
             cell.setupTitle(text: "\(itemIdentifier)")
             return cell
         }
         
-        //
+        // dataSource를 구성하기 위해 Snapshot으로 섹션 및 아이템의 정보를 업데이트
         var snapShot = NSDiffableDataSourceSnapshot<Section, Int>()
-        snapShot.appendSections([Section.grid4])
-        snapShot.appendItems(data)
+        snapShot.appendSections([Section.main])
+        snapShot.appendItems(Array(1...24))
         dataSource.apply(snapShot, animatingDifferences: true)
     }
     
     private func createLayout() -> UICollectionViewLayout {
         
         let numberOfRows = 1.0 / 4.0       // 행의 갯수
-        let numberOfColumns = 1.0 / 6.0   // 열의 갯수
+        let numberOfColumns = 1.0 / 6.0    // 열의 갯수
         let itemInset: CGFloat = 5.0
         
         // CompositionalLayout(sectionProvider:)
@@ -79,7 +80,8 @@ class ViewController: UIViewController {
                 widthDimension: .fractionalWidth(1),
                 heightDimension: .fractionalHeight(numberOfColumns)
             )
-            // 정렬할 방향를 정할 수 있습니다. (horizontal, vertical) 이상하게 vertical은 한 줄로 밖에 안되네요.
+            // 정렬할 방향으로 그룹을 만들 수 있습니다. (horizontal, vertical)
+            // nested 모양을 만들 때 horizontal, vertical를 조합해 subitems에 추가해서 사용하면 됩니다.
             let group = NSCollectionLayoutGroup.horizontal(
                 layoutSize: groupSize,
                 subitems: [item]
@@ -103,6 +105,7 @@ class ViewController: UIViewController {
     }
     
 }
+
 
 
 
