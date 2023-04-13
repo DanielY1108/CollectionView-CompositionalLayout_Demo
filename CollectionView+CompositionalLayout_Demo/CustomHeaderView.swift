@@ -13,7 +13,7 @@ class CustomHeaderView: UICollectionReusableView {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .gray
+        label.backgroundColor = .secondarySystemBackground
         label.font = .preferredFont(forTextStyle: .title1)
         label.textAlignment = .center
         return label

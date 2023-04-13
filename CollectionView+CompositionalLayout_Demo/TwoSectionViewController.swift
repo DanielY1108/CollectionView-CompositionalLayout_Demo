@@ -8,12 +8,9 @@
 import UIKit
 import SnapKit
 
-enum Section: Int, CaseIterable {
-    case grid3
-    case grid6
-}
 
-class ViewController: UIViewController {
+
+class TwoSectionViewController: UIViewController {
   
     // MARK: - Properties
     
@@ -68,11 +65,15 @@ class ViewController: UIViewController {
         var snapShot = NSDiffableDataSourceSnapshot<Section, Int>()
         Section.allCases.forEach {
             snapShot.appendSections([$0])
+            // Section을 한 개로 사용해서 만들어서...지워주자
+            snapShot.deleteSections([.main])
             switch $0 {
             case .grid3:
                 snapShot.appendItems(Array(1...12))
             case .grid6:
                 snapShot.appendItems(Array(13...24))
+                
+            default: break
             }
         }
         dataSource.apply(snapShot, animatingDifferences: true)
@@ -158,36 +159,17 @@ class ViewController: UIViewController {
 
 
 
-import SwiftUI
 
-#if DEBUG
-extension UIViewController {
-    private struct Preview: UIViewControllerRepresentable {
-        let viewController: UIViewController
-        
-        func makeUIViewController(context: Context) -> UIViewController {
-            return viewController
-        }
-        
-        func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        }
-    }
-    
-    func toPreview() -> some View {
-        Preview(viewController: self)
-    }
-}
-#endif
 
 
 // MARK: - PreView 읽기
 import SwiftUI
 
 #if DEBUG
-struct PreView: PreviewProvider {
+struct PreView2: PreviewProvider {
     static var previews: some View {
         // 사용할 뷰 컨트롤러를 넣어주세요
-        ViewController()
+        TwoSectionViewController()
             .toPreview()
     }
 }
