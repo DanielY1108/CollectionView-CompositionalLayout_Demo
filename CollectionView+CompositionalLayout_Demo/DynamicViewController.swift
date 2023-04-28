@@ -69,7 +69,7 @@ extension DynamicViewController: UICollectionViewDataSource {
         
         let text = "엄청 긴 글 \n엄청 긴 글 \n엄청 긴 글 \n엄청 긴 글 \n엄청 긴 글 \n엄청 긴 글 \n엄청 긴 글 \n엄청 긴 글 \n엄청 긴 글 \n마지막"
         
-        cell.titleLabel.text = text
+        cell.setupTitle(text: text)
         
         return cell
     }
@@ -77,13 +77,18 @@ extension DynamicViewController: UICollectionViewDataSource {
 
 extension DynamicViewController: DynamicCustomCellDelegate {
     func showHideButtonTapped(_ cell: DynamicCustomCell, sender: UIButton) {
+        
+        // 각 셀의 index를 알수 있게 불러와 줍시다.
+        guard let indexPath = collectionView.indexPath(for: cell) else { return }
+        
+        print(indexPath)
         switch sender.currentTitle {
         case "더보기":
             sender.setTitle("숨기기", for: .normal)
             cell.titleLabel.numberOfLines = 0
-            
+
             DispatchQueue.main.async {
-                self.collectionView.reloadData()
+                self.collectionView.reconfigureItems(at: [indexPath])
             }
             
         case "숨기기":
@@ -91,7 +96,7 @@ extension DynamicViewController: DynamicCustomCellDelegate {
             cell.titleLabel.numberOfLines = 3
             
             DispatchQueue.main.async {
-                self.collectionView.reloadData()
+                self.collectionView.reconfigureItems(at: [indexPath])
             }
             
         default: break

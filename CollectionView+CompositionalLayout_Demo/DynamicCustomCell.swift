@@ -55,6 +55,15 @@ class DynamicCustomCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        setupTitle(text: "")
+    }
+    
+    func setupTitle(text: String) {
+        titleLabel.text = text
+    }
+    
     @objc func showHideButtonHandler(_ sender: UIButton) {
         delegate?.showHideButtonTapped(self, sender: sender)
     }
