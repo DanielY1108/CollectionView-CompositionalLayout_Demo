@@ -18,6 +18,8 @@
 		653079CC29E6FCDA00EA26F4 /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653079CB29E6FCDA00EA26F4 /* CustomHeaderView.swift */; };
 		653079CE29E716AC00EA26F4 /* TwoSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653079CD29E716AC00EA26F4 /* TwoSectionViewController.swift */; };
 		653079D029E71D4800EA26F4 /* NestedItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653079CF29E71D4800EA26F4 /* NestedItemController.swift */; };
+		65739FEF29FBA477003B59AC /* DynamicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65739FEE29FBA477003B59AC /* DynamicViewController.swift */; };
+		65739FF129FBA56B003B59AC /* DynamicCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65739FF029FBA56B003B59AC /* DynamicCustomCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,8 @@
 		653079CB29E6FCDA00EA26F4 /* CustomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
 		653079CD29E716AC00EA26F4 /* TwoSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoSectionViewController.swift; sourceTree = "<group>"; };
 		653079CF29E71D4800EA26F4 /* NestedItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedItemController.swift; sourceTree = "<group>"; };
+		65739FEE29FBA477003B59AC /* DynamicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicViewController.swift; sourceTree = "<group>"; };
+		65739FF029FBA56B003B59AC /* DynamicCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicCustomCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +75,9 @@
 				650A5F1929E581C1001CDD4B /* OneSectionViewController.swift */,
 				653079CD29E716AC00EA26F4 /* TwoSectionViewController.swift */,
 				653079CF29E71D4800EA26F4 /* NestedItemController.swift */,
+				65739FEE29FBA477003B59AC /* DynamicViewController.swift */,
 				650A5F2C29E59F81001CDD4B /* CustomCell.swift */,
+				65739FF029FBA56B003B59AC /* DynamicCustomCell.swift */,
 				653079CB29E6FCDA00EA26F4 /* CustomHeaderView.swift */,
 				650A5F1B29E581C1001CDD4B /* Main.storyboard */,
 				650A5F1E29E581C2001CDD4B /* Assets.xcassets */,
@@ -160,8 +166,10 @@
 			files = (
 				653079D029E71D4800EA26F4 /* NestedItemController.swift in Sources */,
 				653079CE29E716AC00EA26F4 /* TwoSectionViewController.swift in Sources */,
+				65739FEF29FBA477003B59AC /* DynamicViewController.swift in Sources */,
 				653079CC29E6FCDA00EA26F4 /* CustomHeaderView.swift in Sources */,
 				650A5F1A29E581C1001CDD4B /* OneSectionViewController.swift in Sources */,
+				65739FF129FBA56B003B59AC /* DynamicCustomCell.swift in Sources */,
 				650A5F1629E581C1001CDD4B /* AppDelegate.swift in Sources */,
 				650A5F2D29E59F81001CDD4B /* CustomCell.swift in Sources */,
 				650A5F1829E581C1001CDD4B /* SceneDelegate.swift in Sources */,

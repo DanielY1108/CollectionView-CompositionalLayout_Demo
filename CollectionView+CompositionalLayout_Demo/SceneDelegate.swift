@@ -22,10 +22,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let oneVC = OneSectionViewController()
         let twoVC = TwoSectionViewController()
         let nestedVC = NestedItemController()
+        let dynamicVC = DynamicViewController()
+
         
         oneVC.title = "Basic"
         twoVC.title = "Two Section"
         nestedVC.title = "Nested Itme"
+        dynamicVC.title = "Dynamic Layout"
         
         let apprearance = UITabBarAppearance()
         apprearance.configureWithDefaultBackground()
@@ -33,7 +36,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let tabbarVC = UITabBarController()
         tabbarVC.tabBar.scrollEdgeAppearance = apprearance
         tabbarVC.tabBar.backgroundColor = .red
-        tabbarVC.setViewControllers([oneVC, twoVC, nestedVC], animated: true)
+        tabbarVC.setViewControllers([oneVC, twoVC, nestedVC, dynamicVC], animated: true)
         
         window.rootViewController = tabbarVC
         window.makeKeyAndVisible()
